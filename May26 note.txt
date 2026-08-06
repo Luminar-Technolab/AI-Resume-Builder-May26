@@ -465,6 +465,27 @@
         - API call using 'fetch' method
             - fetch method return a promise (fullfilled: use 'then' method , Rejected: use 'catch' method)
             - fetch method return a promise (use async-await to resolved the promise)
+            
+
+    SDLC - SOFTWARE DEVELOPEMENT LIFE CYCLE
+    -----------------------------------------------
+
+    1. SDLC (Software Development Life Cycle) is a step-by-step process used to build high-quality software in a structured and organized way. It helps developers, testers, designers, and project managers work together efficiently.
+    2. Phases of SDLC
+        Planning --> Requirement Analysis --> System Design --> Developement --> Testing --> Deployment -->  Maintence
+    3. SDLC Roles
+        | Role                   | Responsibility                                  |
+        | ---------------------- | ----------------------------------------------- |
+        | Client                 | Provides requirements and approves the product  |
+        | Business Analyst       | Gathers and documents requirements              |
+        | UI/UX Designer         | Designs the user interface and experience       |
+        | Frontend Developer     | Builds the user interface                       |
+        | Backend Developer      | Develops APIs and business logic                |
+        | Database Administrator | Designs and manages the database                |
+        | QA/Test Engineer       | Tests the application and reports bugs          |
+        | DevOps Engineer        | Handles deployment and infrastructure           |
+        | Project Manager        | Plans, coordinates, and tracks project progress |
+    
 
 
         REACT - FRONTEND TECHNOLOGIES
@@ -553,6 +574,7 @@
             - Render entire react app / root component inside 'BrowserRouter' component of react-router-dom
             - All url / route should be inside Routes component of react-router-dom, path set up code should given in root component file
             - Inorder to setup path use Route component inside Routes
+        - Link component used to navigate from one page to another without reloading entire page
     16. Form Handling : means managing user inputs and responding to form events like submitting / typing etc..., Based on react form handling we can classify component as 
         - Controlled Components (Recommend) : React component uses state to store user inputs, 
         - Uncontrolled components : Component can directly access real dom element to fetch its data, uses useRef hook
@@ -560,43 +582,7 @@
         - using fetch method
 
 
-        SDLC - SOFTWARE DEVELOPEMENT LIFE CYCLE
-    -----------------------------------------------
-
-    1. Structured way of building a software used to plan, develop, test, deploy and maintain a project
-    2. Phases of SDLC
-        Requirement Analysis --> Planning --> System Design --> Developement --> Testing --> Deployment -->  Maintence
-    3. SDLC for AI rBuilder App
-        - Requirement Analysis
-            - Functional Requirement : Create a new Resume, Edit an exisiting Resume, View A Saved Resume, Download Resume, View All Saved resumes, Remove Saved Resume, 
-            - Non functionnal Requirement : Responsive UI, REST API Integration, Easy Navigation
-        - Planning 
-            UI Design - 2 Days, React set up - 0.5 day, CRUD APIs - 2 Days, AI Integration - 1 Day, Resume data management - 2 Days
-        - System Design 
-            - React Pages : Home page, Resume page, User Info Page, View Resume page, All saved Resume, Page Not found, Download Resume
-            - React Component : Header, Footer, User Input, Resume Preview, Edit Resume
-            - Folder Structure : Pages, Components, Services, API
-            - JSON Schema : {
-                "resumes":[
-                {
-                    "id":1,"username":"demo","location":"","jobTitle":""....
-                },
-                "downloads":[
-                    {
-                       timestamp:"", resumeImg:"", id:"" 
-                    }
-                ]
-            ]} 
-            - REST API Design
-                - Methods           Endpoint        Purpose
-                  POST              /resumes        Save resume in json file
-                  PUT               /resumes/id     Edit exisiting resume in json file
-                  GET               /resumes/id     View A resume from json file
-                  GET               /resumes        View All resume from json file
-                  DELETE            /resumes/id     Remove A resume from json file
-                  GET               /downloads       View All downloaded resume from json file
-                  DELETE            /downloads/id    Remove A downloaded resume from json file
-
+        
 
 
 
