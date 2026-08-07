@@ -47,5 +47,12 @@
     6. Set up path for each page of the react app using react-router-dom library
     7. Design the app
 
+# Project Folder Structure
 
+    src
+    │
+    ├── components folder
+    ├── pages folder
+    ├── App.jsx
+    └── main.jsx
 
