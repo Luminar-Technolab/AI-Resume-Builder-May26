@@ -28,7 +28,6 @@
         GET               /resumes        View All resume from json file
         DELETE            /resumes/id     Remove A resume from json file
         GET               /downloads      View All downloaded resume from json file
-        DELETE            /downloads/id   Remove A downloaded resume from json file
 - Developement
     - Frontend : React
     - Database : JSON Server
