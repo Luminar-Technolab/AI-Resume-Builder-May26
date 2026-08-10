@@ -16,11 +16,7 @@ import summaries from '../assets/summaries.json'
 
 const steps = ['Basic Informations', 'Contact Details', 'Educational Details','Review & Submit'];
 
-function ResumeInputs() {
-
-  const [resumeDetails,setResumeDetails] = React.useState({
-    fullName:"",location:"",job:"",email:"",phone:"",linkedin:"",github:"",degree:"",college:"",year:"",skills:[],summary:""
-  })
+function ResumeInputs({resumeDetails,setResumeDetails}) {
 
   console.log(resumeDetails);
   

@@ -22,7 +22,7 @@
     ]} 
     - REST API Design
         - Methods           Endpoint        Purpose
-        POST              /resumes        Save resume in json file
+        POST              /resumes        Save resume in json file 
         PUT               /resumes/id     Edit exisiting resume in json file
         GET               /resumes/id     View A resume from json file
         GET               /resumes        View All resume from json file
@@ -50,6 +50,11 @@
 
     src
     │
+    ├── api folder
+        ├── axiosInstance.js : used to create axios instance and add interceptors
+        ├── axiosService.js : used to make common api call function
+    ├── services folder
+        ├── apiService.js file : used to define api call and return output to components
     ├── components folder
     ├── pages folder
     ├── App.jsx

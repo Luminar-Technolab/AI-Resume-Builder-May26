@@ -580,8 +580,27 @@
         - Uncontrolled components : Component can directly access real dom element to fetch its data, uses useRef hook
     17. API call in React
         - using fetch method
+        - using Axios library 
+    18. Axios Library : used to make API call 
+        - Install axios : npm install axios
+        - Axios Instance : used to used to common request configuaration & interceptors 
+        - Axios Interceptors : used to intercept request or response  before they handled by then() or catch() method. Used for
+            - Global Error handling
+            - Adding Logging Token / Authentication
+            - Logging Request/Responses
+    19. Sharing Data between components
+        - State Lifting : uses 'props' to share data between unrelated components, Here state/data will be lifting to common parent component so that its child can access data/state using props
 
 
+    JSON SERVER CREATION
+    ---------------------
+    1. To Store and manage JSON type data via API call
+    2. Steps to create json server
+        - Create a folder for server
+        - Create package.json file for project configuaration : use command : npm init -y
+        - Create Json file to store & manage json data inside the folder
+        - Use json-server package to run json file, to install json-server use : npm i json-server
+        - To run json file use : npx json-server json-file-name
         
 
 
