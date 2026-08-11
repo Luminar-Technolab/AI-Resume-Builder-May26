@@ -1,11 +1,34 @@
-import React from 'react'
-import { FaTrash } from 'react-icons/fa'
+import React,{useState,useEffect} from 'react'
+import { FaSearch, FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { getAllResumesAPI } from '../services/apiService'
+
 
 function Saved() {
+
+  const [allResumes,setAllResumes] = useState([])
+
+  console.log(allResumes);
+
+  useEffect(()=>{
+    getAllResumes()
+  },[])
+  
+  const getAllResumes = async ()=>{
+    const response = await getAllResumesAPI()
+    if(response.status==200){
+      setAllResumes(response.data)
+    }
+  }
+
   return (
     <div className='my-5 container d-flex justify-content-center align-items-center flex-column'>
       <h1>All Saved Resumes</h1>
+      <p style={{textAlign:'justify'}} className="my-5">All resumes submitted to the platform in one place, allowing administrators or recruiters to efficiently view, search, filter, and manage candidate profiles. It provides a quick overview of available candidates and their key details, making the recruitment and candidate-selection process more organized and efficient.</p>
+      <div className="d-flex justify-content-center align-items-center w-50">
+        <input type="text" placeholder='Search Candidate by their Job role' className="form-control" />
+        <FaSearch style={{marginLeft:'-30px'}}/>
+      </div>
       <table className="my-5 table table-hover table-stripped">
         <thead>
           <tr className="table-dark">
@@ -16,12 +39,19 @@ function Saved() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td> <Link to={`/resumes/id`}> NAME </Link> </td>
-            <td> JOB</td>
-            <td> <button className="btn text-danger"> <FaTrash/> </button> </td>
-          </tr>
+          {
+            allResumes?.length>0?
+              allResumes?.map((resume,index)=>(
+                <tr key={resume?.id}>
+                  <td>{index+1}</td>
+                  <td> <Link to={`/resumes/${resume?.id}`}> {resume?.fullName.toUpperCase()} </Link> </td>
+                  <td> {resume?.job.toUpperCase()}</td>
+                  <td> <button className="btn text-danger"> <FaTrash/> </button> </td>
+                </tr>
+              ))
+            :
+            <p className="text-center">No Resumes added yet!!!</p>
+          }
         </tbody>
       </table>
     </div>

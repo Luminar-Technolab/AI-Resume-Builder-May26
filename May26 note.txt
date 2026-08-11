@@ -575,15 +575,17 @@
             - All url / route should be inside Routes component of react-router-dom, path set up code should given in root component file
             - Inorder to setup path use Route component inside Routes
         - Link component used to navigate from one page to another without reloading entire page
+        - useNavigate hook : used to navigate from one page to another. Hook return a function which is capable of redirecting from one page to another
+        - useParams hook : used to get dynamic values associated with component url, it return an object 
     16. Form Handling : means managing user inputs and responding to form events like submitting / typing etc..., Based on react form handling we can classify component as 
         - Controlled Components (Recommend) : React component uses state to store user inputs, 
         - Uncontrolled components : Component can directly access real dom element to fetch its data, uses useRef hook
     17. API call in React
         - using fetch method
         - using Axios library 
-    18. Axios Library : used to make API call 
+    18. Axios Library : used to make API call and it returns promise
         - Install axios : npm install axios
-        - Axios Instance : used to used to common request configuaration & interceptors 
+        - Axios Instance : Axios Instance is a customized Axios object created using axios.create() that stores common API configurations and can be reused for multiple HTTP requests.
         - Axios Interceptors : used to intercept request or response  before they handled by then() or catch() method. Used for
             - Global Error handling
             - Adding Logging Token / Authentication

@@ -83,7 +83,7 @@ function Edit() {
               <h3>Skills</h3>
               <div className="d-flex p-3">
                 <input type="text" placeholder='Add New Skill' className="form-control" />
-                <Button>add</Button>
+                <Button style={{color:'#714a2f'}}>add</Button>
               </div>
               <h6>Added Skills : </h6>
               <div className="p-3 d-flex justify-content-between flex-wrap">
