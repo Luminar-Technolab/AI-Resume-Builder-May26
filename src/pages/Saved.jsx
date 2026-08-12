@@ -1,23 +1,36 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useMemo} from 'react'
 import { FaSearch, FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { getAllResumesAPI } from '../services/apiService'
-
+import { deleteResumeAPI, getAllResumesAPI } from '../services/apiService'
 
 function Saved() {
 
   const [allResumes,setAllResumes] = useState([])
-
-  console.log(allResumes);
-
+  const [searchKey,setSearchKey] = useState("")
+  const [dummyAllResumes,setDummyAllResumes] = useState([])
+ 
   useEffect(()=>{
-    getAllResumes()
+   getAllResumes()
   },[])
-  
+
+  const searchOutput = useMemo(()=>{
+    setAllResumes(dummyAllResumes.filter(item=>item.job.toLowerCase().includes(searchKey.toLowerCase())))
+  },[searchKey])
+
   const getAllResumes = async ()=>{
     const response = await getAllResumesAPI()
     if(response.status==200){
       setAllResumes(response.data)
+      setDummyAllResumes(response.data)
+    }
+  }
+
+  const removeResume = async (id)=>{
+    if(confirm("Are you sure, Do you want to delete the resume?")){
+      const response = await deleteResumeAPI(id)
+      if(response.status==200){
+        getAllResumes()
+      }
     }
   }
 
@@ -26,7 +39,7 @@ function Saved() {
       <h1>All Saved Resumes</h1>
       <p style={{textAlign:'justify'}} className="my-5">All resumes submitted to the platform in one place, allowing administrators or recruiters to efficiently view, search, filter, and manage candidate profiles. It provides a quick overview of available candidates and their key details, making the recruitment and candidate-selection process more organized and efficient.</p>
       <div className="d-flex justify-content-center align-items-center w-50">
-        <input type="text" placeholder='Search Candidate by their Job role' className="form-control" />
+        <input onChange={(e)=>setSearchKey(e.target.value)} type="text" placeholder='Search Candidate by their Job Roles' className="form-control" />
         <FaSearch style={{marginLeft:'-30px'}}/>
       </div>
       <table className="my-5 table table-hover table-stripped">
@@ -46,11 +59,11 @@ function Saved() {
                   <td>{index+1}</td>
                   <td> <Link to={`/resumes/${resume?.id}`}> {resume?.fullName.toUpperCase()} </Link> </td>
                   <td> {resume?.job.toUpperCase()}</td>
-                  <td> <button className="btn text-danger"> <FaTrash/> </button> </td>
+                  <td> <button onClick={()=>removeResume(resume?.id)} className="btn text-danger"> <FaTrash/> </button> </td>
                 </tr>
               ))
             :
-            <p className="text-center">No Resumes added yet!!!</p>
+            <tr className="text-center"  colSpan="4"><td>No Resumes added yet!!!</td></tr>
           }
         </tbody>
       </table>

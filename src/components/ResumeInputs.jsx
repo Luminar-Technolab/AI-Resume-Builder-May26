@@ -81,7 +81,7 @@ function ResumeInputs({resumeDetails,setResumeDetails}) {
         break;
       case 3: return (
         <div>
-          <p>Our AI will generate Skills & Summary according to your job role.Once the form get submitted, user won't get the chance to update the resume details. If you want ot proceed pleasec lick the <b>Generate AI Skill & Summary</b> button to submit. </p>
+          <p>Our AI will generate Skills & Summary according to your job role.Once the form get submitted, user won't get the chance to update the resume details. If you want ot proceed please click the <b>Generate AI Skill & Summary</b> button to submit. </p>
         </div>
       )
         break;
