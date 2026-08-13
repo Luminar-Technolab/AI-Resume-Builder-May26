@@ -112,7 +112,6 @@ function ResumeInputs({resumeDetails,setResumeDetails}) {
     }else{
       toast.info("Please fill the form completely!!!!")
     }
-
   }
 
 

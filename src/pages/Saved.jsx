@@ -1,5 +1,5 @@
 import React,{useState,useEffect, useMemo} from 'react'
-import { FaSearch, FaTrash } from 'react-icons/fa'
+import { FaBackward, FaForward, FaSearch, FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { deleteResumeAPI, getAllResumesAPI } from '../services/apiService'
 
@@ -8,7 +8,15 @@ function Saved() {
   const [allResumes,setAllResumes] = useState([])
   const [searchKey,setSearchKey] = useState("")
   const [dummyAllResumes,setDummyAllResumes] = useState([])
- 
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const rowsPerPage = 4;
+  // const lastIndex = currentPage * rowsPerPage;
+  // const firstIndex = lastIndex - rowsPerPage;
+  // const filteredUsers = dummyAllResumes.filter(item=>item.job.toLowerCase().includes(searchKey.toLowerCase()))
+  // const currentUsers = filteredUsers.slice(firstIndex, lastIndex);
+  // const totalPages = Math.ceil(filteredUsers.length / rowsPerPage);
+
+
   useEffect(()=>{
    getAllResumes()
   },[])
@@ -16,6 +24,8 @@ function Saved() {
   const searchOutput = useMemo(()=>{
     setAllResumes(dummyAllResumes.filter(item=>item.job.toLowerCase().includes(searchKey.toLowerCase())))
   },[searchKey])
+
+    
 
   const getAllResumes = async ()=>{
     const response = await getAllResumesAPI()
@@ -39,7 +49,8 @@ function Saved() {
       <h1>All Saved Resumes</h1>
       <p style={{textAlign:'justify'}} className="my-5">All resumes submitted to the platform in one place, allowing administrators or recruiters to efficiently view, search, filter, and manage candidate profiles. It provides a quick overview of available candidates and their key details, making the recruitment and candidate-selection process more organized and efficient.</p>
       <div className="d-flex justify-content-center align-items-center w-50">
-        <input onChange={(e)=>setSearchKey(e.target.value)} type="text" placeholder='Search Candidate by their Job Roles' className="form-control" />
+        {/* <input onChange={(e)=>{setSearchKey(e.target.value); setCurrentPage(1);}} type="text" placeholder='Search Candidate by their Job Roles' className="form-control" /> */}
+        <input onChange={(e)=>{setSearchKey(e.target.value); }} type="text" placeholder='Search Candidate by their Job Roles' className="form-control" />
         <FaSearch style={{marginLeft:'-30px'}}/>
       </div>
       <table className="my-5 table table-hover table-stripped">
@@ -63,10 +74,30 @@ function Saved() {
                 </tr>
               ))
             :
-            <tr className="text-center"  colSpan="4"><td>No Resumes added yet!!!</td></tr>
+            <tr className="text-center" ><td  colSpan="4">No Resumes added yet!!!</td></tr>
           }
         </tbody>
       </table>
+       {/* <div className='d-flex align-items-center'>
+         <button className='btn'
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          <FaBackward/>
+        </button>
+  
+            {currentPage} of {totalPages}
+  
+        <button className='btn'
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={
+            currentPage === totalPages ||
+            totalPages === 0
+          }
+        >
+          <FaForward/>
+        </button>
+       </div> */}
     </div>
   )
 }
