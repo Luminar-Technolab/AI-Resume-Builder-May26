@@ -6,12 +6,11 @@ import Edit from '../components/Edit'
 import { MdTextSnippet } from "react-icons/md";
 import { IoMdRefresh } from "react-icons/io";
 import { AiFillBackward } from "react-icons/ai";
-import { viewResumeAPI } from '../services/apiService';
+import { downloadResumeAPI, viewResumeAPI } from '../services/apiService';
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
 
 function View() {
-
   const previewRef = useRef()
   const [resume,setResume] = useState({})
   const {id} = useParams()
@@ -31,20 +30,37 @@ function View() {
   const downloadCV = async ()=>{
     const previewTag = previewRef.current
     const canvas = await html2canvas(previewTag)
+    canvas.toBlob(async (imgFile)=>{
+    //create formData to send file via API
+      const formData = new FormData()
+      formData.append("file",imgFile)
+      formData.append("upload_preset","my_preset")
+    //generate resumeImg from cloudinary - api call
+      const result = await fetch("https://api.cloudinary.com/v1_1/dkieulw0f/image/upload",{
+        method:"POST",
+        body:formData
+      })
+      const serverData = await result.json()
+      const url = serverData.secure_url
+      // console.log(url);
+      generatePDF(url)
+    })
+  }
+
+  const generatePDF = async (resumeImg)=>{
     const pdf = new jsPDF()
     const imageWidth = pdf.internal.pageSize.getWidth()
     const imageHeight = pdf.internal.pageSize.getHeight()
-    pdf.addImage(canvas,"PNG",0,0,imageWidth,imageHeight)
-    //generate image url from canvas
-   canvas.toBlob(blob=>{
-      const url = URL.createObjectURL(blob);
-      console.log(url);
-      
-   })
-   
-   
-    //when download cv api become success
-    // pdf.save("resume.pdf")
+    pdf.addImage(resumeImg,"PNG",0,0,imageWidth,imageHeight)
+    //api call to save download resume details in json
+    const today = new Date()
+    const timestamp = `${today.toLocaleDateString()}, ${today.toLocaleTimeString()}`
+    // console.log(timestamp);
+    const result = await downloadResumeAPI({timestamp,resumeImg,resumeId:resume.id,jobRole:resume.job})
+    if(result.status==201){
+    //to download cv as pdf when api call become success
+    pdf.save(`${resume.fullName}-CV.pdf`)
+    }
   }
 
   return (

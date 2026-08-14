@@ -16,7 +16,7 @@
         },
         "downloads":[
             {
-                timestamp:"", resumeImg:"", id:"" , jobRole:""
+                timestamp:"", resumeImg:"", resumeId:"" , jobRole:""
             }
         ]
     ]} 
