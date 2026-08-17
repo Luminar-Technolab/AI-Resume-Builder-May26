@@ -603,6 +603,22 @@
         - Create Json file to store & manage json data inside the folder
         - Use json-server package to run json file, to install json-server use : npm i json-server
         - To run json file use : npx json-server json-file-name
+    3. Deploy json file using Render 
+        - Create index.js file in server folder
+        - Inside index.js file define steps run json file using node
+            - import json-server package
+            - create server for running json file use json-server package
+            - set up the route/url for json file that should br run by the server
+            - make sure parse json data before node process use a middleare in nodejs
+            - create port number to run the app in server
+            - use json middleware in the server app
+            - use router in the server app
+            - run the server app in the given port, command for run server app: node index.js
+        - install json-server with stable version : npm i json-server@0.17.0
+        - update package.json file scripts key as "scripts":{"start":"node index.js"}
+        - create .gitignore file in server, add 'node_modules' inside the file
+        - Push all server codes to github repository
+        - Render can access github repo to deploy the node js application
         
 
 

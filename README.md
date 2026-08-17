@@ -1,5 +1,4 @@
 # SDLC for AI rBuilder App
-
 - Requirement Analysis
     - Functional Requirement : Create a new Resume, Edit an exisiting Resume, View A Saved Resume, Download Resume, View All Saved resumes, Remove Saved Resume, 
     - Non functionnal Requirement : Responsive UI, REST API Integration, Easy Navigation
@@ -35,19 +34,21 @@
     - Vercel/Netlify, Render
 
 # Steps for Creating React Application
-    1. Create & run react app using vite 
+    1. Create ( npm create vite@latest ) & run ( npm run dev ) react app using vite 
     2. Remove all code from index.css & App.css file. Update App.jsx file
     3. Install or Add packages to the project
         - Update website title & icon
         - Add CDN link for bootstrap , google fonts
-        - Install material UI, react-icons , react-router-dom, 
+        - Install material UI, react-icons,axios, react-router-dom, jspdf, html2canvas, react-toastify, react-chartjs-2, chartjs
     4. Create pages folder inside src to hold different pages of react app, and create react component for the same
     5. Create components folder inside src to hold different components which is part of webpages of react app, and create react component for the same
     6. Set up path for each page of the react app using react-router-dom library
-    7. Design the app
+    7. Design the app using Material UI & bootstrap
+    8. Develop code
+    9. Test functionalities
+    10. Deploy the app
 
 # Project Folder Structure
-
     src
     │
     ├── api folder
@@ -59,4 +60,3 @@
     ├── pages folder
     ├── App.jsx
     └── main.jsx
-

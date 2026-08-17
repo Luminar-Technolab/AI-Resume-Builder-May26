@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { getAlldownloadAPI } from '../services/apiService';
 import { resume } from 'react-dom/server';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, plugins } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -19,7 +19,6 @@ const style = {
   maxHeight:'80vh',
   overflowY:'auto',
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -40,11 +39,19 @@ function Download() {
     const data = {
       labels:label,
       datasets:[{
-        label:'Download Count',
+        label:'Downloads',
         data:value,
         backgroundColor
         }
       ]
+    }
+
+    const options = {
+      plugins:{
+        legend:{
+          position:'bottom'
+        }
+      }
     }
 
     useEffect(()=>{
@@ -109,7 +116,7 @@ function Download() {
           </Typography>
           <Box id="modal-modal-description" sx={{ mt: 2 }}>
             <div className='d-flex justify-content-center align-items-center  m-5'>
-              <Pie data={data}/>
+              <Pie data={data} options={options}/>
             </div>
              <p style={{textAlign:'justify'}}>This chart provides an overview of the number of CV downloads associated with different job roles on the website. It helps visualize the demand and engagement for CVs across various career categories, making it easier to identify which job roles attract the highest number of downloads. By comparing download counts across roles, the chart can provide useful insights into user preferences and the popularity of different career opportunities on the platform.</p>
           </Box>
